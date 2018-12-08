@@ -30,7 +30,7 @@ public class MoviesRepository {
     }
 
     public void getMovies(final OnGetMoviesCallback callback) {
-        api.getPopularMovies( "<YOUR_API_KEY>", LANGUAGE, 1 ) // You must replace <YOUR_API_KEY> with your actual api key
+        api.getPopularMovies( BuildConfig.THE_MOVIE_DB_API_TOKEN, LANGUAGE, 1 ) // You must replace <YOUR_API_KEY> with your actual api key
                 .enqueue( new Callback<MoviesResponse>() {
                     @Override
                     public void onResponse(@NonNull Call<MoviesResponse> call, @NonNull Response<MoviesResponse> response) {
