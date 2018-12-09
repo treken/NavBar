@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.treken.cyberflix.BaseFactory;
 import com.treken.cyberflix.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import rx.Subscriber;
@@ -19,81 +20,70 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.schedulers.Schedulers;
 
-public class MoviesFragment extends Fragment
-{
+public class MoviesFragment extends Fragment {
     private RecyclerView mMoviesListing;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private List<Movie> mMovies = new ArrayList<>( 20 );
 
 
-    public MoviesFragment()
-    {
+    public MoviesFragment() {
         // Required empty public constructor
     }
 
-    public static MoviesFragment newInstance()
-    {
+    public static MoviesFragment newInstance() {
         MoviesFragment fragment = new MoviesFragment();
         return fragment;
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
-        View rootView = inflater.inflate(R.layout.fragment_movies, container, false);
-        initLayoutReferences(rootView);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View rootView = inflater.inflate( R.layout.fragment_movies, container, false );
+        initLayoutReferences( rootView );
         return rootView;
     }
 
-    private void initLayoutReferences(View rootView)
-    {
-        mMoviesListing = (RecyclerView) rootView.findViewById(R.id.movies_listing);
-        mMoviesListing.setHasFixedSize(true);
-        mLayoutManager = new GridLayoutManager(getActivity(), 2);
-        mMoviesListing.setLayoutManager(mLayoutManager);
-        mAdapter = new MoviesListingAdapter();
-        mMoviesListing.setAdapter(mAdapter);
-    }
-
     @Override
-    public void onStart()
-    {
-        super.onStart();
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated( view, savedInstanceState );
         fetchMoviesAsync();
     }
 
-    private void fetchMoviesAsync()
-    {
+    private void initLayoutReferences(View rootView) {
+        mMoviesListing = (RecyclerView) rootView.findViewById( R.id.movies_listing );
+        mMoviesListing.setHasFixedSize( true );
+        mLayoutManager = new GridLayoutManager( getActivity(), 2 );
+        mMoviesListing.setLayoutManager( mLayoutManager );
+        mAdapter = new MoviesListingAdapter( mMovies );
+        mMoviesListing.setAdapter( mAdapter );
+    }
+
+    private void fetchMoviesAsync() {
         BaseFactory.getMovieService().getPopularMovies()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe(new Action0()
-                {
+                .subscribeOn( Schedulers.io() )
+                .observeOn( AndroidSchedulers.mainThread() )
+                .doOnSubscribe( new Action0() {
                     @Override
-                    public void call()
-                    {
-                        Toast.makeText(getContext(), "Loading Movies", Toast.LENGTH_LONG).show();
+                    public void call() {
+                        Toast.makeText( getContext(), "Loading Movies", Toast.LENGTH_LONG ).show();
                     }
-                })
-                .subscribe(new Subscriber<List<Movie>>()
-                {
+                } )
+                .subscribe( new Subscriber<List<Movie>>() {
                     @Override
-                    public void onCompleted()
-                    {
+                    public void onCompleted() {
 
                     }
 
                     @Override
-                    public void onError(Throwable e)
-                    {
-                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                    public void onError(Throwable e) {
+                        Toast.makeText( getContext(), e.getMessage(), Toast.LENGTH_LONG ).show();
                     }
 
                     @Override
-                    public void onNext(List<Movie> movies)
-                    {
-                        Toast.makeText(getContext(), "Got Movies", Toast.LENGTH_LONG).show();
+                    public void onNext(List<Movie> movies) {
+                        mMovies.addAll(movies);
+                        mAdapter.notifyDataSetChanged();
                     }
-                });
+                } );
     }
 }
