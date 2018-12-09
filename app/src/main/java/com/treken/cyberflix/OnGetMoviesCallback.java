@@ -1,4 +1,4 @@
-package com.treken.navbar;
+package com.treken.cyberflix;
 
 import java.util.List;
 

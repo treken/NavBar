@@ -1,4 +1,4 @@
-package com.treken.navbar;
+package com.treken.cyberflix;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -23,7 +23,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
 
     @Override
     public MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_movie, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate( com.treken.navbar.R.layout.item_movie, parent, false);
         return new MovieViewHolder(view);
     }
 
@@ -46,11 +46,11 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
 
         public MovieViewHolder(View itemView) {
             super(itemView);
-            releaseDate = itemView.findViewById(R.id.item_movie_release_date);
-            title = itemView.findViewById(R.id.item_movie_title);
-            rating = itemView.findViewById(R.id.item_movie_rating);
-            genres = itemView.findViewById(R.id.item_movie_genre); // Add genres later
-            poster = itemView.findViewById( R.id.item_movie_poster );
+            releaseDate = itemView.findViewById( com.treken.navbar.R.id.item_movie_release_date);
+            title = itemView.findViewById( com.treken.navbar.R.id.item_movie_title);
+            rating = itemView.findViewById( com.treken.navbar.R.id.item_movie_rating);
+            genres = itemView.findViewById( com.treken.navbar.R.id.item_movie_genre); // Add genres later
+            poster = itemView.findViewById( com.treken.navbar.R.id.item_movie_poster );
         }
 
         public void bind(Movie movie) {
@@ -60,7 +60,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
             genres.setText(""); // Add genres later
             Glide.with(itemView)
                     .load( IMAGE_BASE_URL + movie.getPosterPath() )
-                    .apply( RequestOptions.placeholderOf( R.color.colorPrimary ) )
+                    .apply( RequestOptions.placeholderOf( com.treken.navbar.R.color.colorPrimary ) )
                     .into( poster );
         }
     }

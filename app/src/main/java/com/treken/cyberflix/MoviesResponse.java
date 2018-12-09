@@ -1,4 +1,4 @@
-package com.treken.navbar;
+package com.treken.cyberflix;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

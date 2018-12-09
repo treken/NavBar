@@ -1,6 +1,8 @@
-package com.treken.navbar;
+package com.treken.cyberflix;
 
 import android.support.annotation.NonNull;
+
+import com.treken.cyberflix.BuildConfig;
 
 import retrofit2.Call;
 import retrofit2.Callback;

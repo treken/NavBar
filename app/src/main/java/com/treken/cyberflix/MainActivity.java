@@ -1,4 +1,4 @@
-package com.treken.navbar;
+package com.treken.cyberflix;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity
         moviesList = findViewById(R.id.movies_list);
         moviesList.setLayoutManager(new LinearLayoutManager(this));
 
-        moviesRepository.getMovies(new com.treken.navbar.OnGetMoviesCallback() {
+        moviesRepository.getMovies(new OnGetMoviesCallback() {
 
             @Override
             public void onSuccess(List<Movie> movies) {
