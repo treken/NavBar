@@ -1,6 +1,6 @@
 package com.treken.cyberflix;
 
-import com.treken.cyberflix.movies.MovieService;
+import com.treken.cyberflix.movies.MoviesInteractor;
 import com.squareup.okhttp.OkHttpClient;
 import net.jcip.annotations.GuardedBy;
 import java.net.CookieHandler;
@@ -17,14 +17,14 @@ public class BaseFactory
     @GuardedBy("LOCK")
     private static OkHttpClient mOkHttpClient;
     @GuardedBy("LOCK")
-    private static MovieService mMoviewService;
-    public static MovieService getMovieService()
+    private static MoviesInteractor mMoviewService;
+    public static MoviesInteractor getMoviesInteractor()
     {
         synchronized (LOCK)
         {
             if (mMoviewService == null)
             {
-                mMoviewService = new MovieService();
+                mMoviewService = new MoviesInteractor();
             }
         }
         return mMoviewService;
