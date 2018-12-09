@@ -10,7 +10,7 @@ public class Splash extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView( com.treken.navbar.R.layout.activity_splash);
+        setContentView( com.treken.cyberflix.R.layout.activity_splash);
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
