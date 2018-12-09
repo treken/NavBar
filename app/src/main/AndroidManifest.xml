@@ -3,8 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.treken.cyberflix">
 
-    <uses-permission android:name="android.permission.INTERNET"/> <!-- This gives access to internet -->
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
