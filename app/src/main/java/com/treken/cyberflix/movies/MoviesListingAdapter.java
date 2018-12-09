@@ -1,4 +1,4 @@
-package com.treken.cyberflix;
+package com.treken.cyberflix.movies;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.treken.cyberflix.R;
 
 public class MoviesListingAdapter extends android.support.v7.widget.RecyclerView.Adapter {
     private static class ViewHolder extends RecyclerView.ViewHolder {

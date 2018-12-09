@@ -1,6 +1,6 @@
 package com.treken.cyberflix;
 
-import com.treken.cyberflix.MovieService;
+import com.treken.cyberflix.movies.MovieService;
 import com.squareup.okhttp.OkHttpClient;
 import net.jcip.annotations.GuardedBy;
 import java.net.CookieHandler;
